@@ -1,9 +1,6 @@
-// Esperar a que el DOM cargue
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ========================================================
-       LÓGICA PARA: PORTAL CLIENTE
-       ======================================================== */
+    /*  LÓGICA PARA: PORTAL CLIENTE */
     const formCita = document.getElementById('form-cita');
     if (formCita) {
         formCita.addEventListener('submit', (e) => {
