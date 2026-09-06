@@ -98,6 +98,13 @@ h2 {
     flex: 1 1 300px;
     text-align: center;
     border-top: 5px solid var(--color-primario);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pagina-inicio .tarjeta-acceso .btn {
+    margin-top: auto;
 }
 
 /*ESTILO PORTAL CLIENTE (.pagina-cliente)*/
@@ -169,4 +176,17 @@ th { background-color: var(--color-secundario); color: white; }
 @media (max-width: 600px) {
     header { flex-direction: column; text-align: center; gap: 10px; }
     .pagina-inicio .contenedor { flex-direction: column; }
+}
+
+.pagina-inicio .tarjeta-acceso {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente todo el contenido */
+}
+
+.pagina-inicio .tarjeta-acceso .btn {
+    width: 100%;
+    max-width: 280px;    /* Asegura un ancho uniforme y elegante */
+    margin-top: 35px;    /* Empuja el botón a la base para nivelar ambos */
+    display: block;
 }
