@@ -1,0 +1,128 @@
+:root {
+    --color-primario: #0077b6; /* Azul San Marcos */
+    --color-secundario: #2a9d8f;/* Verde Médico */
+    --fondo-gris: #f4f7f6;/* Gris Claro */
+    --texto-oscuro: #333;/* Gris Oscuro */
+    --color-error: #d90429;/* Rojo Error */
+}
+
+/*reseteo basico para eliminar margenes del navegador y definir la tipografia generica*/
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/*estilos para el cuerpo de la página*/
+body{
+    background-color: var(--fondo-gris);
+    color: var(--texto-oscuro);
+    line-height: 1.6;
+}
+
+/*contenedor principal que centra y limita el ancho maximo del contenido*/
+.contenedor{
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/*Paneles Genéricos y Títulos*/
+.seccion-panel{
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+h2{
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+}
+
+/*botones acciones generales y variaciones de color*/
+.btn{
+    display: inline-block;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+.btn-primario{
+    background-color: var(--color-primario);
+    color: white;
+}
+
+.btn-secundario{
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+/*encabezado de la pagina de inicio con imagen de fondo fija y filtro oscuro*/
+.pagina-inicio header{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../img/foto-animales.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+/*contenedor flexible para las tarjetas de los portales simetricamente*/
+.pagina-inicio .contenedor{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 30px;
+    flex: 1;
+}
+
+/*empuja los botones a la parte inferior del contenedor*/
+.pagina-inicio .tarjeta-acceso{
+    margin-top: auto;
+    width: 100%;
+}
+
+/*estructura para la sección de ubicación y texto*/
+.seccion-ubicacion{
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.info-ubicacion{
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/*contenedor para el mapa asi respetar los bordes redondeados y ocultar los desborder*/
+.mapa-contenedor{
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+@media (max-width: 600px) {
+    header {
+         flex-direction: column; 
+         text-align: center; 
+         gap: 10px; 
+        }
+    .pagina-inicio .contenedor { 
+        flex-direction: column; 
+    }
+}

@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /*  LÓGICA PARA: PORTAL CLIENTE */
+    /*LOGICA PARA: PORTAL CLIENTE*/
     const formCita = document.getElementById('form-cita');
     if (formCita) {
         formCita.addEventListener('submit', (e) => {
-            e.preventDefault(); // Evita que recargue la página
+            e.preventDefault(); /*Evita que recargue la página*/
             
             const campos = formCita.querySelectorAll('[required]');
             let esValido = true;
 
-            // Validación de campos vacíos
+            /* Validación de campos vacíos*/
             campos.forEach(campo => {
                 if (campo.value.trim() === '') {
                     campo.classList.add('campo-invalido');
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 mensaje.textContent = "¡Cita registrada correctamente!";
                 mensaje.style.color = "green";
                 mensaje.style.fontWeight = "bold";
-                formCita.reset(); // Limpiar formulario
+                formCita.reset(); 
             } else {
                 mensaje.textContent = "Complete todos los campos obligatorios.";
                 mensaje.style.color = "red";
@@ -32,15 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ========================================================
-       LÓGICA PARA: PORTAL VETERINARIO
-       ======================================================== */
+    /*LOGICA PARA: PORTAL VETERINARIO*/
     const formLogin = document.getElementById('form-login');
     const seccionLogin = document.getElementById('login-vet');
     const seccionAgenda = document.getElementById('agenda-vet');
     const btnSalir = document.getElementById('btn-salir');
 
-    // Función para validar formato RUT básico (ej: 12345678-9)
+    /*Función para validar formato RUT básico (ej: 12345678-9)*/
     function validarRUT(rut) {
         const regex = /^[0-9]{7,8}-[0-9Kk]{1}$/;
         return regex.test(rut);
@@ -55,24 +53,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const mensaje = document.getElementById('mensaje-login');
             let esValido = true;
 
-            // Reiniciar estilos de error
+            /*Reiniciar estilos de error*/
             correo.classList.remove('campo-invalido');
             rut.classList.remove('campo-invalido');
 
-            // Validar si es correo
+            /*Validar si es correo*/
             if (!correo.value.includes('@')) {
                 correo.classList.add('campo-invalido');
                 esValido = false;
             }
 
-            // Validar formato del RUT
+            /*Validar formato del RUT*/
             if (!validarRUT(rut.value.trim())) {
                 rut.classList.add('campo-invalido');
                 esValido = false;
             }
 
             if (esValido) {
-                // Login exitoso: Ocultar login, mostrar agenda
+                /*Login exitoso: Ocultar login, mostrar agenda*/
                 seccionLogin.classList.add('oculto');
                 seccionAgenda.classList.remove('oculto');
                 formLogin.reset();
@@ -84,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Botón cerrar sesión (vuelve a mostrar el login)
+    /*Botón cerrar sesión (vuelve a mostrar el login)*/
     if (btnSalir) {
         btnSalir.addEventListener('click', () => {
             seccionAgenda.classList.add('oculto');
