@@ -1,0 +1,172 @@
+/*englobe todo los estilos de las tres páginas en un solo archivo de estilo*/
+:root {
+    --color-primario: #0077b6; /* Azul San Marcos */
+    --color-secundario: #2a9d8f; /* Verde Médico */
+    --fondo-gris: #f4f7f6;
+    --texto-oscuro: #333;
+    --color-error: #d90429;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: var(--fondo-gris);
+    color: var(--texto-oscuro);
+    line-height: 1.6;
+}
+
+.contenedor {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/*Paneles Genéricos*/
+.seccion-panel {
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+}
+
+/*Todos los Botones*/
+.btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+}
+
+.btn-primario { background-color: var(--color-primario); color: white; }
+.btn-secundario { background-color: var(--color-secundario); color: white; }
+.btn-error { background-color: var(--color-error); color: white; }
+
+/*Estilos para Formularios*/
+.grupo-campo {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.grupo-campo label { font-weight: bold; margin-bottom: 5px; }
+.grupo-campo input, .grupo-campo select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.campo-invalido { border: 2px solid var(--color-error) !important; background-color: #ffe6e6; }
+.oculto { display: none !important; }
+
+/*ESTILO PÁGINA DE INICIO (.pagina-inicio)*/
+.pagina-inicio header {
+    background-color: #fff;
+    color: var(--color-primario);
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 4px solid var(--color-primario);
+}
+
+.pagina-inicio .contenedor {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.pagina-inicio .tarjeta-acceso {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    flex: 1 1 300px;
+    text-align: center;
+    border-top: 5px solid var(--color-primario);
+}
+
+/*ESTILO PORTAL CLIENTE (.pagina-cliente)*/
+.pagina-cliente header {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagina-cliente nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+/*Ficha Clínica del Cliente*/
+.ficha-historial { border-left: 5px solid var(--color-primario); padding: 15px; background: #fafafa; }
+.ficha-historial ul { list-style: none; margin-top: 10px; }
+.ficha-historial li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed #ccc; }
+.total-valor { margin-top: 15px; font-size: 1.2rem; text-align: right; color: var(--color-primario); }
+
+/*Grilla del Catálogo (CSS Grid)*/
+.grilla-catalogo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.producto {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.producto .categoria { display: block; color: #666; font-size: 0.85rem; margin-bottom: 10px; }
+.producto .precio { font-size: 1.4rem; font-weight: bold; color: var(--color-primario); }
+
+/*ESTILO PORTAL MÉDICO (.pagina-veterinario)*/
+.pagina-veterinario header {
+    background-color: var(--color-secundario);
+    color: white;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.pagina-veterinario nav a { color: white; font-weight: bold; text-decoration: none; }
+
+/*Tablas Médicas*/
+.tabla-contenedor { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+th { background-color: var(--color-secundario); color: white; }
+
+/*Etiquetas de Estado*/
+.etiqueta { padding: 4px 10px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; color: white;}
+.ok { background-color: var(--color-secundario); }
+.alerta { background-color: #f4a261; }
+.urgente { background-color: var(--color-error); }
+
+/*Responsividad para móviles*/
+@media (max-width: 600px) {
+    header { flex-direction: column; text-align: center; gap: 10px; }
+    .pagina-inicio .contenedor { flex-direction: column; }
+}

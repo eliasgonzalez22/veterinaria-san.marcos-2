@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Médico - Veterinaria San Marcos</title>
+    <link rel="stylesheet" href="style/visual.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body class="pagina-veterinario">
+    <header>
+        <h1>Portal Veterinario</h1>
+        <nav>
+            <a href="index.html">Volver al Inicio</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+        <section id="login-vet" class="seccion-panel">
+            <h2>Verificación Médica</h2>
+            <p>Ingrese sus credenciales para acceder al sistema.</p>
+            <form id="form-login" novalidate>
+                <div class="grupo-campo">
+                    <label for="correo-medico">Correo Corporativo</label>
+                    <input type="email" id="correo-medico" placeholder="ejemplo@sanmarcos.cl" required>
+                </div>
+                <div class="grupo-campo">
+                    <label for="rut-medico">RUT Médico (Formato: 12345678-9)</label>
+                    <input type="text" id="rut-medico" required>
+                </div>
+                <button type="submit" class="btn btn-secundario">Verificar Identidad</button>
+                <p id="mensaje-login"></p>
+            </form>
+        </section>
+
+        <section id="agenda-vet" class="seccion-panel oculto">
+            <h2>Agenda del Día</h2>
+            <div class="tabla-contenedor">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hora</th>
+                            <th>Paciente</th>
+                            <th>Especie</th>
+                            <th>Servicio</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>09:00</td>
+                            <td>Firulais</td>
+                            <td>Perro</td>
+                            <td>Consulta General</td>
+                            <td><span class="etiqueta alerta">Pendiente</span></td>
+                        </tr>
+                        <tr>
+                            <td>10:00</td>
+                            <td>Pelusa</td>
+                            <td>Gato</td>
+                            <td>Vacuna bivalente felina</td>
+                            <td><span class="etiqueta ok">Confirmado</span></td>
+                        </tr>
+                        <tr>
+                            <td>11:30</td>
+                            <td>Toby</td>
+                            <td>Perro</td>
+                            <td>Consulta urgencia</td>
+                            <td><span class="etiqueta urgente">Urgencia</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <button id="btn-salir" class="btn btn-error" style="margin-top: 20px;">Cerrar Sesión</button>
+        </section>
+    </main>
+</body>
+</html>

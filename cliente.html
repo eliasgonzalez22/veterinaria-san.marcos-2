@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Cliente - Veterinaria San Marcos</title>
+    <link rel="stylesheet" href="style/visual.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body class="pagina-cliente">
+    <header>
+        <h1>Portal del Cliente</h1>
+        <nav>
+            <a href="index.html">Volver al Inicio</a>
+            <a href="#agendar">Agendar Cita</a>
+            <a href="#historial">Historial</a>
+            <a href="#catalogo">Catálogo</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+        <!-- Agendar Cita -->
+        <section id="agendar" class="seccion-panel">
+            <h2>Solicitar Nueva Cita</h2>
+            <form id="form-cita" novalidate>
+                <div class="grupo-campo">
+                    <label for="mascota">Nombre de la Mascota</label>
+                    <input type="text" id="mascota" required>
+                </div>
+                <div class="grupo-campo">
+                    <label for="motivo">Motivo (Servicio)</label>
+                    <select id="motivo" required>
+                        <option value="">Seleccione un servicio...</option>
+                        <option value="Consulta general">Consulta general ($15.000)</option>
+                        <option value="Consulta urgencia">Consulta urgencia ($25.000)</option>
+                        <option value="Vacuna antirrábica canina">Vacuna antirrábica canina ($12.000)</option>
+                        <option value="Esterilización macho canino">Esterilización macho canino ($60.000)</option>
+                    </select>
+                </div>
+                <div class="grupo-campo">
+                    <label for="fecha">Fecha y Hora Preferida</label>
+                    <input type="datetime-local" id="fecha" required>
+                </div>
+                <button type="submit" class="btn btn-primario">Agendar Hora</button>
+                <p id="mensaje-cita"></p>
+            </form>
+        </section>
+
+        <!-- Historial Médico -->
+        <section id="historial" class="seccion-panel">
+            <h2>Última Visita (Historial Médico)</h2>
+            <div class="ficha-historial">
+                <h3>Paciente: Firulais (Perro)</h3>
+                <p><strong>Fecha:</strong> 02 de Septiembre, 2026</p>
+                <p><strong>Diagnóstico:</strong> Infección leve y control antiparasitario preventivo.</p>
+                <hr>
+                <h4>Detalle Médico y Valores:</h4>
+                <ul>
+                    <li>Consulta general: <span>$15.000</span></li>
+                    <li>Amoxibay 250mg (Antibiótico): <span>$4.200</span></li>
+                    <li>Nexgard (Antiparasitario): <span>$9.500</span></li>
+                </ul>
+                <p class="total-valor">Total Atención: <strong>$28.700</strong></p>
+            </div>
+        </section>
+
+        <!-- Catálogo de Servicios y Medicamentos -->
+        <section id="catalogo" class="seccion-panel">
+            <h2>Catálogo Destacado</h2>
+            <div class="grilla-catalogo">
+                <article class="producto">
+                    <h3>Consulta General</h3>
+                    <span class="categoria">Consultas - 30 min</span>
+                    <span class="precio">$15.000</span>
+                </article>
+                <article class="producto">
+                    <h3>Consulta Urgencia</h3>
+                    <span class="categoria">Consultas - Fuera de horario +$10.000</span>
+                    <span class="precio">$25.000</span>
+                </article>
+                <article class="producto">
+                    <h3>Vacuna Antirrábica</h3>
+                    <span class="categoria">Vacunación (Perro/Gato)</span>
+                    <span class="precio">$12.000</span>
+                </article>
+                <article class="producto">
+                    <h3>Bravecto (Fluralaner)</h3>
+                    <span class="categoria">Antiparasitario (Perro)</span>
+                    <span class="precio">$18.900</span>
+                </article>
+                <article class="producto">
+                    <h3>Nexgard (Afoxolaner)</h3>
+                    <span class="categoria">Antiparasitario (Perro)</span>
+                    <span class="precio">$9.500</span>
+                </article>
+                <article class="producto">
+                    <h3>Amoxibay 250mg</h3>
+                    <span class="categoria">Antibióticos (Perro/Gato)</span>
+                    <span class="precio">$4.200</span>
+                </article>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
