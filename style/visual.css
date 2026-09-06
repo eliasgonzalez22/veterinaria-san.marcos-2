@@ -83,6 +83,9 @@ h2 {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: white;
 }
 
 .pagina-inicio .contenedor {
@@ -102,12 +105,21 @@ h2 {
     flex: 1 1 300px;
     text-align: center;
     border-top: 5px solid var(--color-primario);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagina-inicio .tarjeta-acceso .btn {
+    margin-top: auto;
+    width: 100%;
 }
 
 /*ESTILO PORTAL CLIENTE (.pagina-cliente)*/
 .pagina-cliente header {
     background-color: var(--color-primario);
-    color: white;
+    color: rgb(233, 239, 242);
     padding: 1rem 2rem;
     display: flex;
     flex-wrap: wrap;
@@ -169,7 +181,24 @@ th { background-color: var(--color-secundario); color: white; }
 .alerta { background-color: #f4a261; }
 .urgente { background-color: var(--color-error); }
 
-/*Responsividad para móviles*/
+/* ESTILOS SECCIÓN UBICACIÓN */
+.seccion-ubicacion {
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+.info-ubicacion {
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.mapa-contenedor {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 600px) {
     header { flex-direction: column; text-align: center; gap: 10px; }
     .pagina-inicio .contenedor { flex-direction: column; }
