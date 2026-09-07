@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /*LÓGICA PARA: PORTAL CLIENTE*/
+    /*Logica Portal Cliente*/
     const formCita = document.getElementById('form-cita');
     
     if (formCita) {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     timeStyle: 'short'
                 });
 
-                /*AGREGAR AL HISTORIAL*/
+                /*Agregar cita al historial*/
                 const seccionHistorial = document.getElementById('historial');
                 if (seccionHistorial) {
                     const nuevaCitaHTML = document.createElement('div');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     seccionHistorial.appendChild(nuevaCitaHTML);
                 }
 
-                /*AGREGAR A ALERTAS Y RECORDATORIOS*/
+                /*Agregar a Recordatorios*/
                 const seccionRecordatorios = document.getElementById('recordatorios');
                 if (seccionRecordatorios) {
                     const nuevaAlerta = document.createElement('div');
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     tituloRecordatorios.insertAdjacentElement('afterend', nuevaAlerta);
                 }
 
-                /*MENSAJE FINAL, LIMPIEZA Y SCROLL*/
+                /*Mensaje final, limpieza y scroll*/
                 if (mensaje) {
                     mensaje.textContent = `¡Cita para ${nombreMascota} registrada correctamente!`;
                     mensaje.style.color = "green";
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /*LÓGICA PARA: PORTAL VETERINARIO (Intacta)*/
+    /*Logica Portal Veterinario*/
     const formLogin = document.getElementById('form-login');
     const seccionLogin = document.getElementById('login-vet');
     const seccionAgenda = document.getElementById('agenda-vet');

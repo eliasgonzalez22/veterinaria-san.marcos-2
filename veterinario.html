@@ -40,7 +40,7 @@
             <p id="mensaje-login" class="mensaje-alerta"></p>
         </section>
 
-        <!-- 2. Módulo de Agenda Diaria (Oculto inicialmente) -->
+        <!-- 2. Módulo de Agenda Diaria  -->
         <section id="agenda-vet" class="tarjeta-panel oculto">
             <div class="cabecera-agenda">
                 <div>
@@ -96,7 +96,7 @@
         </section>
     </main>
 
-    <!-- Lógica Autónoma de Validación y Cambio de Vista -->
+    //Lógica Autónoma de Validación y Cambio de Vista 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const formLogin = document.getElementById('form-login');
@@ -121,7 +121,7 @@
                     return;
                 }
 
-                // Éxito: ocultar login y revelar agenda
+                // Simulación de verificación exitosa
                 msgLogin.className = 'mensaje-alerta';
                 secLogin.classList.add('oculto');
                 secAgenda.classList.remove('oculto');
