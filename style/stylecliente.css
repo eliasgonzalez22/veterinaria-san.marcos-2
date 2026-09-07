@@ -1,0 +1,177 @@
+/*Variables y Reseteo Base*/
+:root {
+    --p: #2c3e50; 
+    --s: #1abc9c; 
+    --f: #f4f7f6; 
+    --w: #ffffff; 
+    --t: #333333; 
+    --ts: #666666; 
+    --b: #e0e0e0;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', sans-serif; 
+}
+
+body { 
+    background: var(--f); 
+    color: var(--t); 
+    line-height: 1.6; 
+}
+
+/*Estructura Principal*/
+.contenedor { 
+    max-width: 1100px; 
+    margin: 2rem auto; 
+    padding: 0 1.5rem; 
+}
+
+header { 
+    background: var(--p); 
+    color: var(--w); 
+    padding: 1rem 2rem; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    flex-wrap: wrap; 
+    gap: 1rem; 
+}
+
+nav a { 
+    color: var(--w); 
+    text-decoration: none; 
+    font-weight: 500; 
+    margin-left: 1.5rem; 
+}
+
+nav a:hover { 
+    color: var(--s); 
+}
+
+/*Sistema de Tarjetas Reutilizables*/
+.tarjeta { 
+    background: var(--w); 
+    border: 1px solid var(--b); 
+    border-radius: 8px; 
+    padding: 1.5rem; 
+    margin-bottom: 1.5rem; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+}
+
+.tarjeta-hover:hover { 
+    transform: translateY(-4px); 
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1); 
+    transition: 0.3s; 
+}
+
+/*Tipografía Compartida*/
+h2 { 
+    color: var(--p); 
+    border-bottom: 2px solid var(--s); 
+    padding-bottom: 0.5rem; 
+    margin-bottom: 1rem; 
+}
+
+h3 { 
+    color: var(--p); 
+    margin-bottom: 0.5rem; 
+}
+
+.txt-suave { 
+    color: var(--ts); 
+    font-size: 0.9rem; 
+    display: block; 
+    margin-bottom: 0.5rem; 
+}
+
+.precio { 
+    font-size: 1.25rem; 
+    font-weight: bold; 
+    color: var(--s); 
+}
+
+/*Formularios y Botones*/
+form { 
+    max-width: 600px; 
+}
+
+label { 
+    font-weight: bold; 
+    color: var(--p); 
+    display: block; 
+    margin-bottom: 0.3rem; 
+}
+
+input, select { 
+    width: 100%; 
+    padding: 0.75rem; 
+    border: 1px solid var(--b); 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+}
+
+.btn { 
+    background: var(--s); 
+    color: var(--w); 
+    border: none; 
+    padding: 0.75rem 1.5rem; 
+    font-weight: bold; 
+    border-radius: 4px; 
+    cursor: pointer; 
+}
+
+.btn:hover { 
+    background: #16a085; 
+}
+
+.campo-invalido {
+    border-color: red !important;
+    background-color: #ffe6e6;
+}
+
+/*Tablas y Grillas*/
+.grilla { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 1.5rem; 
+}
+
+table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    margin-top: 1rem; 
+}
+
+th, td { 
+    padding: 0.75rem; 
+    text-align: left; 
+    border-bottom: 1px solid var(--b); 
+}
+
+th { 
+    color: var(--p); 
+    border-bottom: 2px solid var(--p); 
+}
+
+/*Alertas para Recordatorios*/
+.alerta { 
+    padding: 1rem; 
+    border-radius: 4px; 
+    margin-bottom: 1rem; 
+    border-left: 5px solid; 
+}
+
+.alerta-aviso { 
+    background: #fff3cd; 
+    border-color: #ffc107; 
+    color: #856404; 
+}
+
+.alerta-info { 
+    background: #d1ecf1; 
+    border-color: #17a2b8; 
+    color: #0c5460; 
+}

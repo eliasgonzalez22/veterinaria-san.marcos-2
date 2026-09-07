@@ -1,15 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /*LOGICA PARA: PORTAL CLIENTE*/
+    /*LÓGICA PARA: PORTAL CLIENTE*/
     const formCita = document.getElementById('form-cita');
+    
     if (formCita) {
         formCita.addEventListener('submit', (e) => {
-            e.preventDefault(); /*Evita que recargue la página*/
+            e.preventDefault(); 
             
             const campos = formCita.querySelectorAll('[required]');
             let esValido = true;
 
-            /* Validación de campos vacíos*/
+            /*Validación de campos vacíos*/
             campos.forEach(campo => {
                 if (campo.value.trim() === '') {
                     campo.classList.add('campo-invalido');
@@ -20,25 +21,80 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const mensaje = document.getElementById('mensaje-cita');
+
             if (esValido) {
-                mensaje.textContent = "¡Cita registrada correctamente!";
-                mensaje.style.color = "green";
-                mensaje.style.fontWeight = "bold";
+                /*Captura de datos*/
+                const nombreDueno = document.getElementById('nombre_dueno').value;
+                const nombreMascota = document.getElementById('nombre_mascota').value;
+                const motivoSelect = document.getElementById('motivo');
+                const motivoTexto = motivoSelect.options[motivoSelect.selectedIndex].text;
+                const fechaInput = document.getElementById('fecha').value;
+
+                const fechaFormateada = new Date(fechaInput).toLocaleString('es-CL', {
+                    dateStyle: 'medium',
+                    timeStyle: 'short'
+                });
+
+                /*AGREGAR AL HISTORIAL*/
+                const seccionHistorial = document.getElementById('historial');
+                if (seccionHistorial) {
+                    const nuevaCitaHTML = document.createElement('div');
+                    nuevaCitaHTML.style.marginTop = '2rem';
+                    nuevaCitaHTML.style.paddingTop = '1rem';
+                    nuevaCitaHTML.style.borderTop = '1px solid var(--b)';
+                    
+                    nuevaCitaHTML.innerHTML = `
+                        <h3 style="color: var(--s);">Cita Recién Agendada: ${nombreMascota}</h3>
+                        <span class="txt-suave">Tutor: ${nombreDueno}</span>
+                        <ul style="list-style: none; margin-top: 1rem;">
+                            <li><strong>Fecha:</strong> ${fechaFormateada}</li>
+                            <li><strong>Servicio Solicitado:</strong> ${motivoTexto}</li>
+                            <li style="color: orange; margin-top: 0.5rem; font-weight: bold;">Estado: Agendada en el sistema</li>
+                        </ul>
+                    `;
+                    seccionHistorial.appendChild(nuevaCitaHTML);
+                }
+
+                /*AGREGAR A ALERTAS Y RECORDATORIOS*/
+                const seccionRecordatorios = document.getElementById('recordatorios');
+                if (seccionRecordatorios) {
+                    const nuevaAlerta = document.createElement('div');
+                    nuevaAlerta.className = 'alerta alerta-info'; 
+                    nuevaAlerta.innerHTML = `
+                        <strong>¡Cita Confirmada!</strong> Acabas de agendar: ${motivoTexto} para ${nombreMascota} el ${fechaFormateada}.
+                    `;
+                    
+                    const tituloRecordatorios = seccionRecordatorios.querySelector('h2');
+                    tituloRecordatorios.insertAdjacentElement('afterend', nuevaAlerta);
+                }
+
+                /*MENSAJE FINAL, LIMPIEZA Y SCROLL*/
+                if (mensaje) {
+                    mensaje.textContent = `¡Cita para ${nombreMascota} registrada correctamente!`;
+                    mensaje.style.color = "green";
+                    mensaje.style.fontWeight = "bold";
+                }
+                
                 formCita.reset(); 
+                
+                //Sube la pantalla a los recordatorios para mostrar la confirmación
+                seccionRecordatorios.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
             } else {
-                mensaje.textContent = "Complete todos los campos obligatorios.";
-                mensaje.style.color = "red";
+                if (mensaje) {
+                    mensaje.textContent = "Complete todos los campos obligatorios.";
+                    mensaje.style.color = "red";
+                }
             }
         });
     }
 
-    /*LOGICA PARA: PORTAL VETERINARIO*/
+    /*LÓGICA PARA: PORTAL VETERINARIO (Intacta)*/
     const formLogin = document.getElementById('form-login');
     const seccionLogin = document.getElementById('login-vet');
     const seccionAgenda = document.getElementById('agenda-vet');
     const btnSalir = document.getElementById('btn-salir');
 
-    /*Función para validar formato RUT básico (ej: 12345678-9)*/
     function validarRUT(rut) {
         const regex = /^[0-9]{7,8}-[0-9Kk]{1}$/;
         return regex.test(rut);
@@ -53,41 +109,37 @@ document.addEventListener('DOMContentLoaded', () => {
             const mensaje = document.getElementById('mensaje-login');
             let esValido = true;
 
-            /*Reiniciar estilos de error*/
             correo.classList.remove('campo-invalido');
             rut.classList.remove('campo-invalido');
 
-            /*Validar si es correo*/
             if (!correo.value.includes('@')) {
                 correo.classList.add('campo-invalido');
                 esValido = false;
             }
 
-            /*Validar formato del RUT*/
             if (!validarRUT(rut.value.trim())) {
                 rut.classList.add('campo-invalido');
                 esValido = false;
             }
 
             if (esValido) {
-                /*Login exitoso: Ocultar login, mostrar agenda*/
                 seccionLogin.classList.add('oculto');
                 seccionAgenda.classList.remove('oculto');
                 formLogin.reset();
-                mensaje.textContent = "";
+                if(mensaje) mensaje.textContent = "";
             } else {
-                mensaje.textContent = "Error: Ingrese un correo válido y un RUT con formato 12345678-9.";
-                mensaje.style.color = "red";
+                if(mensaje) {
+                    mensaje.textContent = "Error: Ingrese un correo válido y un RUT con formato 12345678-9.";
+                    mensaje.style.color = "red";
+                }
             }
         });
     }
 
-    /*Botón cerrar sesión (vuelve a mostrar el login)*/
     if (btnSalir) {
         btnSalir.addEventListener('click', () => {
             seccionAgenda.classList.add('oculto');
             seccionLogin.classList.remove('oculto');
         });
     }
-
 });

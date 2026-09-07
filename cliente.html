@@ -3,100 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portal Cliente - Veterinaria San Marcos</title>
-    <link rel="stylesheet" href="style/visual.css">
+    <title>Portal Cliente - San Marcos</title>
+    <link rel="stylesheet" href="style/stylecliente.css">
     <script src="js/main.js" defer></script>
 </head>
-<body class="pagina-cliente">
+<body>
     <header>
-        <h1>Portal del Cliente</h1>
+        <h1>Portal San Marcos</h1>
         <nav>
-            <a href="index.html">Volver al Inicio</a>
+            <a href="#recordatorios">Recordatorios</a>
             <a href="#agendar">Agendar Cita</a>
-            <a href="#historial">Historial</a>
+            <a href="#historial">Ficha y Vacunas</a>
             <a href="#catalogo">Catálogo</a>
+            <a href="index.html">Salir</a>
         </nav>
     </header>
 
     <main class="contenedor">
-        <!-- Agendar Cita -->
-        <section id="agendar" class="seccion-panel">
-            <h2>Solicitar Nueva Cita</h2>
-            <form id="form-cita" novalidate>
-                <div class="grupo-campo">
-                    <label for="mascota">Nombre de la Mascota</label>
-                    <input type="text" id="mascota" required>
-                </div>
-                <div class="grupo-campo">
-                    <label for="motivo">Motivo (Servicio)</label>
-                    <select id="motivo" required>
-                        <option value="">Seleccione un servicio...</option>
-                        <option value="Consulta general">Consulta general ($15.000)</option>
-                        <option value="Consulta urgencia">Consulta urgencia ($25.000)</option>
-                        <option value="Vacuna antirrábica canina">Vacuna antirrábica canina ($12.000)</option>
-                        <option value="Esterilización macho canino">Esterilización macho canino ($60.000)</option>
-                    </select>
-                </div>
-                <div class="grupo-campo">
-                    <label for="fecha">Fecha y Hora Preferida</label>
-                    <input type="datetime-local" id="fecha" required>
-                </div>
-                <button type="submit" class="btn btn-primario">Agendar Hora</button>
-                <p id="mensaje-cita"></p>
-            </form>
-        </section>
-
-        <!-- Historial Médico -->
-        <section id="historial" class="seccion-panel">
-            <h2>Última Visita (Historial Médico)</h2>
-            <div class="ficha-historial">
-                <h3>Paciente: Firulais (Perro)</h3>
-                <p><strong>Fecha:</strong> 02 de Septiembre, 2026</p>
-                <p><strong>Diagnóstico:</strong> Infección leve y control antiparasitario preventivo.</p>
-                <hr>
-                <h4>Detalle Médico y Valores:</h4>
-                <ul>
-                    <li>Consulta general: <span>$15.000</span></li>
-                    <li>Amoxibay 250mg (Antibiótico): <span>$4.200</span></li>
-                    <li>Nexgard (Antiparasitario): <span>$9.500</span></li>
-                </ul>
-                <p class="total-valor">Total Atención: <strong>$28.700</strong></p>
+        <!--ALERTAS Y RECORDATORIOS (Se actualizan dinámicamente)-->
+        <section id="recordatorios" class="tarjeta">
+            <h2>📅 Alertas y Recordatorios</h2>
+            <div class="alerta alerta-aviso">
+                <strong>Atención:</strong> La vacuna <em>Séxtuple Canina</em> de Firulais vence el 21 de Septiembre.
+            </div>
+            <div class="alerta alerta-info">
+                <strong>Cita Confirmada:</strong> Control postoperatorio programado para mañana a las 10:30 AM.
             </div>
         </section>
 
-        <!-- Catálogo de Servicios y Medicamentos -->
-        <section id="catalogo" class="seccion-panel">
-            <h2>Catálogo Destacado</h2>
-            <div class="grilla-catalogo">
-                <article class="producto">
-                    <h3>Consulta General</h3>
-                    <span class="categoria">Consultas - 30 min</span>
-                    <span class="precio">$15.000</span>
-                </article>
-                <article class="producto">
-                    <h3>Consulta Urgencia</h3>
-                    <span class="categoria">Consultas - Fuera de horario +$10.000</span>
-                    <span class="precio">$25.000</span>
-                </article>
-                <article class="producto">
-                    <h3>Vacuna Antirrábica</h3>
-                    <span class="categoria">Vacunación (Perro/Gato)</span>
-                    <span class="precio">$12.000</span>
-                </article>
-                <article class="producto">
-                    <h3>Bravecto (Fluralaner)</h3>
-                    <span class="categoria">Antiparasitario (Perro)</span>
+        <!--AGENDAR CITA-->
+        <section id="agendar" class="tarjeta">
+            <h2>Agendar Cita en Línea</h2>
+            <form id="form-cita">
+                <label for="nombre_dueno">Nombre del Dueño</label>
+                <input type="text" id="nombre_dueno" placeholder="Ej. Juan Pérez" required>
+
+                <label for="nombre_mascota">Nombre de la Mascota</label>
+                <input type="text" id="nombre_mascota" placeholder="Ej. Pelusa" required>
+
+                <label for="especie">Especie de la Mascota</label>
+                <select id="especie" required>
+                    <option value="">Seleccione especie...</option>
+                    <option value="perro">Perro</option>
+                    <option value="gato">Gato</option>
+                    <option value="ave">Ave</option>
+                    <option value="conejo">Conejo</option>
+                    <option value="otro">Otro</option>
+                </select>
+                
+                <label for="motivo">Servicio</label>
+                <select id="motivo" required>
+                    <option value="">Seleccione un servicio...</option>
+                    <option value="SV001">Consulta general ($15.000)</option>
+                    <option value="SV002">Consulta urgencia ($25.000)</option>
+                    <option value="SV003">Control postoperatorio ($10.000)</option>
+                    <option value="VA001">Vacuna antirrábica canina ($12.000)</option>
+                    <option value="VA002">Vacuna séxtuple canina ($18.000)</option>
+                    <option value="VA003">Vacuna bivalente felina ($15.000)</option>
+                </select>
+
+                <label for="fecha">Fecha y Hora</label>
+                <input type="datetime-local" id="fecha" required>
+                
+                <button type="submit" class="btn">Confirmar Cita</button>
+                
+                <!--Aqui aparecera el mensaje de exito o error del JS-->
+                <div id="mensaje-cita" style="margin-top: 1rem;"></div>
+            </form>
+        </section>
+
+        <!--HISTORIAL Y FICHAS (Se actualizan dinámicamente)-->
+        <section id="historial" class="tarjeta">
+            <h2>Ficha Clínica Digital: Firulais</h2>
+            
+            <h3>Carnet de Vacunación</h3>
+            <table>
+                <tr>
+                    <th>Vacuna</th>
+                    <th>Última Dosis</th>
+                    <th>Estado</th>
+                </tr>
+                <tr>
+                    <td>Antirrábica Canina</td>
+                    <td>10 Ene 2026</td>
+                    <td style="color: green; font-weight: bold;">Al día</td>
+                </tr>
+                <tr>
+                    <td>Séxtuple Canina</td>
+                    <td>21 Sep 2025</td>
+                    <td style="color: orange; font-weight: bold;">Por vencer</td>
+                </tr>
+            </table>
+
+            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px dashed var(--b);">
+
+            <h3>Última Atención (02 Sep 2026)</h3>
+            <span class="txt-suave">Diagnóstico: Infección leve. Receta entregada.</span>
+            <ul style="list-style: none; margin-top: 1rem;">
+                <li>Consulta general: <strong>$15.000</strong></li>
+                <li>Amoxibay 250mg: <strong>$4.200</strong></li>
+            </ul>
+        </section>
+
+        <!--CATALOGO -->
+        <section id="catalogo">
+            <h2 style="margin-left: 1rem;">Catálogo Destacado</h2>
+            <div class="grilla">
+                <article class="tarjeta tarjeta-hover">
+                    <h3>Bravecto</h3>
+                    <span class="txt-suave">Antiparasitario Perro (Fluralaner)</span>
                     <span class="precio">$18.900</span>
                 </article>
-                <article class="producto">
-                    <h3>Nexgard (Afoxolaner)</h3>
-                    <span class="categoria">Antiparasitario (Perro)</span>
+                <article class="tarjeta tarjeta-hover">
+                    <h3>Nexgard</h3>
+                    <span class="txt-suave">Antiparasitario Perro (Afoxolaner)</span>
                     <span class="precio">$9.500</span>
                 </article>
-                <article class="producto">
-                    <h3>Amoxibay 250mg</h3>
-                    <span class="categoria">Antibióticos (Perro/Gato)</span>
-                    <span class="precio">$4.200</span>
+                <article class="tarjeta tarjeta-hover">
+                    <h3>Revolution Plus</h3>
+                    <span class="txt-suave">Antiparasitario Gato</span>
+                    <span class="precio">$14.500</span>
                 </article>
             </div>
         </section>
