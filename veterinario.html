@@ -4,37 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Médico - Veterinaria San Marcos</title>
-    <link rel="stylesheet" href="style/visual.css">
-    <script src="js/main.js" defer></script>
+    <link rel="stylesheet" href="style/styleveterinario.css">
 </head>
 <body class="pagina-veterinario">
-    <header>
-        <h1>Portal Veterinario</h1>
-        <nav>
-            <a href="index.html">Volver al Inicio</a>
-        </nav>
+
+    <!-- Cabecera Institucional -->
+    <header class="header-vet">
+        <div class="header-contenido">
+            <h1>Portal Médico - Veterinaria San Marcos</h1>
+            <nav>
+                <a href="index.html" class="enlace-volver">← Volver al Inicio</a>
+            </nav>
+        </div>
     </header>
 
     <main class="contenedor">
-        <section id="login-vet" class="seccion-panel">
+        <!-- 1. Módulo de Verificación / Login Médico -->
+        <section id="login-vet" class="tarjeta-panel">
             <h2>Verificación Médica</h2>
-            <p>Ingrese sus credenciales para acceder al sistema.</p>
+            <p class="txt-descripcion">Ingrese sus credenciales para acceder a su agenda clínica.</p>
+            
             <form id="form-login" novalidate>
                 <div class="grupo-campo">
                     <label for="correo-medico">Correo Corporativo</label>
-                    <input type="email" id="correo-medico" placeholder="ejemplo@sanmarcos.cl" required>
+                    <input type="email" id="correo-medico" placeholder="ejemplo@sanmarcos.cl" required autocomplete="off">
                 </div>
+
                 <div class="grupo-campo">
                     <label for="rut-medico">RUT Médico (Formato: 12345678-9)</label>
-                    <input type="text" id="rut-medico" required>
+                    <input type="text" id="rut-medico" placeholder="12345678-9" required autocomplete="off">
                 </div>
-                <button type="submit" class="btn btn-secundario">Verificar Identidad</button>
-                <p id="mensaje-login"></p>
+
+                <button type="submit" class="btn btn-principal">Verificar Identidad</button>
             </form>
+            <p id="mensaje-login" class="mensaje-alerta"></p>
         </section>
 
-        <section id="agenda-vet" class="seccion-panel oculto">
-            <h2>Agenda del Día</h2>
+        <!-- 2. Módulo de Agenda Diaria (Oculto inicialmente) -->
+        <section id="agenda-vet" class="tarjeta-panel oculto">
+            <div class="cabecera-agenda">
+                <div>
+                    <h2>Agenda del Día</h2>
+                    <p class="txt-descripcion" id="saludo-medico">Atenciones programadas para la jornada</p>
+                </div>
+                <button id="btn-salir" class="btn btn-peligro">Cerrar Sesión</button>
+            </div>
+
             <div class="tabla-contenedor">
                 <table>
                     <thead>
@@ -42,37 +57,83 @@
                             <th>Hora</th>
                             <th>Paciente</th>
                             <th>Especie</th>
-                            <th>Servicio</th>
+                            <th>Servicio / Motivo</th>
                             <th>Estado</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="lista-citas">
                         <tr>
-                            <td>09:00</td>
+                            <td><strong>09:00</strong></td>
                             <td>Firulais</td>
-                            <td>Perro</td>
-                            <td>Consulta General</td>
-                            <td><span class="etiqueta alerta">Pendiente</span></td>
+                            <td>Perro (Canino)</td>
+                            <td>Consulta General y Vacunación</td>
+                            <td><span class="etiqueta etiqueta-espera">Pendiente</span></td>
                         </tr>
                         <tr>
-                            <td>10:00</td>
+                            <td><strong>10:00</strong></td>
                             <td>Pelusa</td>
-                            <td>Gato</td>
+                            <td>Gato (Felino)</td>
                             <td>Vacuna bivalente felina</td>
-                            <td><span class="etiqueta ok">Confirmado</span></td>
+                            <td><span class="etiqueta etiqueta-ok">Confirmado</span></td>
                         </tr>
                         <tr>
-                            <td>11:30</td>
+                            <td><strong>11:30</strong></td>
                             <td>Toby</td>
-                            <td>Perro</td>
-                            <td>Consulta urgencia</td>
-                            <td><span class="etiqueta urgente">Urgencia</span></td>
+                            <td>Perro (Canino)</td>
+                            <td>Consulta Urgencia - Decaimiento</td>
+                            <td><span class="etiqueta etiqueta-urgente">Urgencia</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>12:15</strong></td>
+                            <td>Luna</td>
+                            <td>Perro (Canino)</td>
+                            <td>Control post-quirúrgico</td>
+                            <td><span class="etiqueta etiqueta-ok">Confirmado</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <button id="btn-salir" class="btn btn-error" style="margin-top: 20px;">Cerrar Sesión</button>
         </section>
     </main>
+
+    <!-- Lógica Autónoma de Validación y Cambio de Vista -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const formLogin = document.getElementById('form-login');
+            const secLogin = document.getElementById('login-vet');
+            const secAgenda = document.getElementById('agenda-vet');
+            const btnSalir = document.getElementById('btn-salir');
+            const msgLogin = document.getElementById('mensaje-login');
+            const correoInput = document.getElementById('correo-medico');
+            const rutInput = document.getElementById('rut-medico');
+
+            // Manejo de Inicio de Sesión
+            formLogin.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const correo = correoInput.value.trim();
+                const rut = rutInput.value.trim();
+
+                // Validación simple de formato
+                const regexRut = /^[0-9]+-[0-9kK]{1}$/;
+                if (!correo.includes('@') || !regexRut.test(rut)) {
+                    msgLogin.textContent = 'Ingrese un correo corporativo válido y un RUT con guión (ej: 12345678-9).';
+                    msgLogin.className = 'mensaje-alerta visible error';
+                    return;
+                }
+
+                // Éxito: ocultar login y revelar agenda
+                msgLogin.className = 'mensaje-alerta';
+                secLogin.classList.add('oculto');
+                secAgenda.classList.remove('oculto');
+            });
+
+            // Cerrar sesión
+            btnSalir.addEventListener('click', () => {
+                secAgenda.classList.add('oculto');
+                secLogin.classList.remove('oculto');
+                formLogin.reset();
+            });
+        });
+    </script>
 </body>
 </html>
